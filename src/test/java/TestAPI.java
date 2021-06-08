@@ -3,10 +3,11 @@ import com.talend.databricks.dbfs.DBFSException;
 import org.junit.Test;
 
 import java.io.*;
-
+//Comment code
 
 public class TestAPI {
-    private  DBFS dbfs = null;
+    private DBFS dbfs = null;
+
     @Test
     public void testAddBlock() {
         try {
@@ -15,8 +16,7 @@ public class TestAPI {
             this.processFile(handle);
             dbfs.close(handle);
             String line = null;
-        } catch(DBFSException e)
-        {
+        } catch (DBFSException e) {
             e.printStackTrace();
         }
     }
@@ -24,7 +24,8 @@ public class TestAPI {
     private void processFile(int handle) {
         // Read the text input stream one line at a time and display each line.
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("/Users/tbennett/Downloads/MOCK_DATA.csv")));
+            BufferedReader reader = new BufferedReader(
+                    new FileReader(new File("/Users/tbennett/Downloads/MOCK_DATA.csv")));
             String line = null;
             int chunkSize = 1048576; // 1MB but coding below will not break multibyte characters
             StringBuilder buff = new StringBuilder();
@@ -33,8 +34,7 @@ public class TestAPI {
             }
 
             dbfs.addBlock(handle, buff.toString().getBytes("UTF-8"));
-        } catch(DBFSException | IOException e)
-        {
+        } catch (DBFSException | IOException e) {
             e.printStackTrace();
         }
     }
